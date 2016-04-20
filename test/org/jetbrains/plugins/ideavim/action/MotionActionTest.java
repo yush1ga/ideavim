@@ -748,6 +748,23 @@ public class MotionActionTest extends VimTestCase {
     assertPluginError(true);
   }
 
+  // VIM-1090 |v_at|
+  public void testNestedSameTags() {
+    configureByText("<body>\n" +
+                    "  <div>\n" +
+                    "    <d<caret>iv>\n" +
+                    "      <div>\n" +
+                    "        <p>hey hey hey</p>\n" +
+                    "      </div>\n" +
+                    "    </div>\n" +
+                    "  </div>\n" +
+                    "</body>\n");
+    typeText(parseKeys("dat"));
+    myFixture.checkResult("<body>\n" +
+                          "  <div>\n" +
+                          "  </div>\n" +
+                          "</body>\n");
+  }
 
   // |%|
   public void testPercentMatchSimple() {
