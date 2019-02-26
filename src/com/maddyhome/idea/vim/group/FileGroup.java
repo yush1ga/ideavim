@@ -39,6 +39,7 @@ import com.intellij.openapi.vfs.VirtualFileVisitor;
 import com.maddyhome.idea.vim.VimPlugin;
 import com.maddyhome.idea.vim.command.CommandState;
 import com.maddyhome.idea.vim.common.TextRange;
+import com.maddyhome.idea.vim.group.motion.VisualMotionGroup;
 import com.maddyhome.idea.vim.helper.EditorData;
 import com.maddyhome.idea.vim.helper.EditorHelper;
 import com.maddyhome.idea.vim.helper.SearchHelper;
@@ -302,7 +303,7 @@ public class FileGroup {
     else {
       msg.append("Selected ");
 
-      TextRange vr = VimPlugin.getMotion().getVisualRange(editor);
+      TextRange vr = VisualMotionGroup.INSTANCE.getVisualRange(editor);
       vr.normalize();
 
       int lines;
