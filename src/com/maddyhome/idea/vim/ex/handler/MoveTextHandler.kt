@@ -36,6 +36,7 @@ import com.maddyhome.idea.vim.ex.InvalidRangeException
 import com.maddyhome.idea.vim.ex.LineRange
 import com.maddyhome.idea.vim.ex.commands
 import com.maddyhome.idea.vim.ex.flags
+import com.maddyhome.idea.vim.group.copy.PutCopyGroup
 import com.maddyhome.idea.vim.handler.CaretOrder
 import com.maddyhome.idea.vim.helper.EditorHelper
 import com.maddyhome.idea.vim.helper.MessageHelper
@@ -80,7 +81,7 @@ class MoveTextHandler : CommandHandler(
       val text = texts[i]
 
       val offset = VimPlugin.getMotion().moveCaretToLineStart(editor, line + 1)
-      VimPlugin.getCopy().putText(editor, caret, context, text, SelectionType.LINE_WISE, CommandState.SubMode.NONE,
+      PutCopyGroup.putText(editor, caret, context, text, SelectionType.LINE_WISE, CommandState.SubMode.NONE,
               offset, 1, true, false)
     }
 

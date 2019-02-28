@@ -33,6 +33,7 @@ import com.maddyhome.idea.vim.ex.ExException
 import com.maddyhome.idea.vim.ex.commands
 import com.maddyhome.idea.vim.ex.flags
 import com.maddyhome.idea.vim.group.MarkGroup
+import com.maddyhome.idea.vim.group.copy.PutCopyGroup
 import com.maddyhome.idea.vim.handler.CaretOrder
 import com.maddyhome.idea.vim.helper.EditorHelper
 
@@ -76,7 +77,7 @@ class PutLinesHandler : CommandHandler(
         continue
       }
 
-      VimPlugin.getCopy().putText(editor, caret, context, text, SelectionType.LINE_WISE, CommandState.SubMode.NONE,
+      PutCopyGroup.putText(editor, caret, context, text, SelectionType.LINE_WISE, CommandState.SubMode.NONE,
               startOffset, 1, false, false)
     }
 

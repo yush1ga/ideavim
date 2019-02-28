@@ -30,6 +30,7 @@ import com.maddyhome.idea.vim.ex.ExCommand
 import com.maddyhome.idea.vim.ex.ExException
 import com.maddyhome.idea.vim.ex.commands
 import com.maddyhome.idea.vim.ex.flags
+import com.maddyhome.idea.vim.group.copy.YankCopyGroup
 
 class YankLinesHandler : CommandHandler(
         commands("y[ank]"),
@@ -58,7 +59,7 @@ class YankLinesHandler : CommandHandler(
       ends.add(range.endOffset - 1)
     }
 
-    return VimPlugin.getCopy().yankRange(editor,
+    return YankCopyGroup.yankRange(editor,
             TextRange(starts.toIntArray(), ends.toIntArray()),
             SelectionType.LINE_WISE, false)
   }
