@@ -24,6 +24,7 @@ import com.intellij.openapi.editor.Editor
 import com.maddyhome.idea.vim.VimPlugin
 import com.maddyhome.idea.vim.command.CommandFlags
 import com.maddyhome.idea.vim.command.CommandState
+import com.maddyhome.idea.vim.group.motion.VisualMotionGroup
 import com.maddyhome.idea.vim.handler.CaretOrder
 import com.maddyhome.idea.vim.handler.ExecuteMethodNotOverriddenException
 import com.maddyhome.idea.vim.helper.EditorHelper
@@ -152,6 +153,9 @@ abstract class CommandHandler {
     }
 
     CommandState.getInstance(editor).flags = optFlags
+    if (CommandState.getInstance(editor).mode == CommandState.Mode.VISUAL) {
+      VisualMotionGroup.exitVisual(editor)
+    }
 
     var res = true
     try {
