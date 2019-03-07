@@ -22,15 +22,14 @@ import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.editor.Caret
 import com.intellij.openapi.editor.Editor
 import com.maddyhome.idea.vim.VimPlugin
-import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.command.CommandFlags
+import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.handler.CaretOrder
 import com.maddyhome.idea.vim.handler.ExecuteMethodNotOverriddenException
 import com.maddyhome.idea.vim.helper.EditorHelper
 import com.maddyhome.idea.vim.helper.MessageHelper
 import com.maddyhome.idea.vim.helper.Msg
-
-import java.util.EnumSet
+import java.util.*
 
 /**
  * Base class for all Ex command handlers.
@@ -97,7 +96,7 @@ abstract class CommandHandler {
           names: Array<CommandName>?,
           argFlags: EnumSet<Flag>,
           runForEachCaret: Boolean = false,
-          caretOrder: CaretOrder = CaretOrder.NATIVE,
+          caretOrder: CaretOrder = CaretOrder.DECREASING_OFFSET,
           optFlags: EnumSet<CommandFlags> = EnumSet.noneOf<CommandFlags>(CommandFlags::class.java)
   ) {
     this.names = names
