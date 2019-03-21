@@ -70,6 +70,7 @@ import com.maddyhome.idea.vim.common.TextRange;
 import com.maddyhome.idea.vim.ex.LineRange;
 import com.maddyhome.idea.vim.handler.CaretOrder;
 import com.maddyhome.idea.vim.helper.CaretData;
+import com.maddyhome.idea.vim.helper.CaretDataKt;
 import com.maddyhome.idea.vim.helper.CharacterHelper;
 import com.maddyhome.idea.vim.helper.EditorData;
 import com.maddyhome.idea.vim.helper.EditorHelper;
@@ -1405,7 +1406,7 @@ public class ChangeGroup {
       }
       else if (append) {
         column += range.getMaxLength();
-        if (CaretData.getLastColumn(caret) == MotionGroup.LAST_COLUMN) {
+        if (CaretDataKt.getVimLastColumn(caret) == MotionGroup.LAST_COLUMN) {
           column = MotionGroup.LAST_COLUMN;
         }
       }
@@ -1505,7 +1506,7 @@ public class ChangeGroup {
     if (type == SelectionType.BLOCK_WISE) {
       lines = getLinesCountInVisualBlock(editor, range);
       col = editor.offsetToLogicalPosition(range.getStartOffset()).column;
-      if (CaretData.getLastColumn(caret) == MotionGroup.LAST_COLUMN) {
+      if (CaretDataKt.getVimLastColumn(caret) == MotionGroup.LAST_COLUMN) {
         col = MotionGroup.LAST_COLUMN;
       }
     }
@@ -1763,7 +1764,7 @@ public class ChangeGroup {
       }
     }
 
-    CaretData.setLastColumn(editor, caret, caret.getVisualPosition().column);
+    CaretDataKt.setVimLastColumn(caret, caret.getVisualPosition().column);
   }
 
   /**
