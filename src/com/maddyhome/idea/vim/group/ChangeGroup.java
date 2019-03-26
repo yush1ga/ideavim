@@ -1803,7 +1803,7 @@ public class ChangeGroup {
     return false;
   }
 
-  private static void resetCursor(@NotNull Editor editor, boolean insert) {
+  public static void resetCursor(@NotNull Editor editor, boolean insert) {
     Document doc = editor.getDocument();
     VirtualFile vf = FileDocumentManager.getInstance().getFile(doc);
     if (vf != null) {
