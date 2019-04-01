@@ -886,6 +886,7 @@ public class ChangeGroup {
 
   public boolean processKeyInSelectMode(@NotNull final Editor editor,
                                         @NotNull final DataContext context, @NotNull final KeyStroke key) {
+    SelectionVimListenerSuppressor.INSTANCE.lock();
     boolean res = processKey(editor, context, key);
 
     VimPlugin.getVisualMotion().exitSelectMode(editor, false);
@@ -894,6 +895,7 @@ public class ChangeGroup {
       VimPlugin.getChange().insertBeforeCursor(editor, context);
     }
 
+    SelectionVimListenerSuppressor.INSTANCE.unlock();
     return res;
   }
 
